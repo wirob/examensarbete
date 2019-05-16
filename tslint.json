@@ -1,0 +1,15 @@
+{
+  "extends": ["tslint:recommended"],
+  "linterOptions": {
+    "exclude": ["config/**/*.js", "node_modules/**/*.ts"]
+  },
+  "rules": {
+    "quotemark": false,
+    "no-console": false,
+    "semicolon": false,
+    "ordered-imports": true,
+    "arrow-parens": false,
+    "trailing-comma": false,
+    "no-trailing-whitespace": false
+  }
+}
