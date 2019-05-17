@@ -1,0 +1,44 @@
+version: '2'
+services:
+  transpiler:
+    image: node:10-alpine
+    container_name: transpiler
+    working_dir: /usr/src/app
+    volumes:
+      - ./server:/usr/src/app
+      - /usr/src/app/node_modules
+    command: >
+      sh -c 'yarn && yarn global add tslint && yarn global add typescript && tsc --watch'
+  api:
+    image: node:10-alpine
+    container_name: api
+    working_dir: /usr/src/app
+    volumes:
+      - ./server:/usr/src/app
+    command: >
+      sh -c 'yarn && yarn startdev'
+    expose:
+      - 3001
+    depends_on:
+      - transpiler
+
+  client:
+    image: node:10-alpine
+    container_name: client
+    working_dir: /usr/src/app
+    volumes:
+      - ./client:/usr/src/app
+    command: >
+      sh -c 'yarn && yarn start'
+    expose:
+      - 3000
+
+  reverse-proxy:
+    image: nginx:alpine
+    container_name: reverse-proxy
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./reverse-proxy/nginx.conf:/etc/nginx/nginx.conf
+    restart: always
