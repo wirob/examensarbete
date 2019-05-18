@@ -3,7 +3,7 @@ import { createUser } from '../userModel'
 
 const router: Router = Router()
 
-router.post('/', async (req: Request, res: Response) => {
+router.post('/', (req: Request, res: Response) => {
   const postBody: IPostBody = req.body
 
   if (checkUsernameRegexp(postBody.username)) {
