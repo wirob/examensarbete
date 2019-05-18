@@ -27,11 +27,14 @@ User.init(
   }
 )
 
-export async function createUser(userData: IPostBody) {
-  User.sync().then(() => {
-    User.create(userData).then(user => {
-      console.log(user.faculty, user.username)
-      return { faculty: user.faculty, username: user.username }
-    })
+export function createUser(userData: IPostBody) {
+  return new Promise((resolve, reject) => {
+    User.sync()
+      .then(() => {
+        User.create(userData).then(user => {
+          resolve({ faculty: user.faculty, username: user.username })
+        })
+      })
+      .catch(err => reject(err))
   })
 }

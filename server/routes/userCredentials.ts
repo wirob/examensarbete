@@ -7,8 +7,12 @@ router.post('/', async (req: Request, res: Response) => {
   const postBody: IPostBody = req.body
 
   if (checkUsernameRegexp(postBody.username)) {
-    const user = await createUser(postBody)
-    res.json({ message: 'success!' })
+    createUser(postBody)
+      .then(createdUser => {
+        console.log(createdUser)
+        res.json({ message: 'success!' })
+      })
+      .catch(err => res.send(err))
   } else {
     res.sendStatus(500)
   }
