@@ -10,7 +10,7 @@ router.post('/', (req: Request, res: Response) => {
     createUser(postBody)
       .then(createdUser => {
         console.log(createdUser)
-        res.json({ message: 'success!' })
+        res.json({ message: `Tack ${createdUser} för ditt deltagande, ta en kexchoklad och va som folk =)` })
       })
       .catch(err => res.send(err))
   } else {
