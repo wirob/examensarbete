@@ -1,7 +1,7 @@
 import bodyParser from 'body-parser'
 import express from 'express'
 import { routes } from './routes/routes'
-import sequelize from './sequelize';
+import sequelize from './sequelize'
 
 const app = express()
 
@@ -22,4 +22,4 @@ sequelize
   })
   .catch((err: Error) => {
     console.error('Unable to connect to the database:', err)
-})
+  })

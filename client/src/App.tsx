@@ -107,7 +107,7 @@ class App extends Component<any, IState> {
                 />
               </div>
               <div style={{ marginBottom: 64 }}>
-                <Typography variant="h5">Vad har du för lösenord?</Typography>
+                <Typography variant="h5">Vilket är ditt lösenord?</Typography>
                 <TextField
                   value={this.state.password}
                   type="password"
